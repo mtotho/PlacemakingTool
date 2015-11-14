@@ -1,0 +1,19 @@
+{
+  "name": "PlacemakingTool-api",
+  "version": "0.0.1",
+  "dependencies": {
+    "async": "latest",
+    "bcryptjs": "2.1.0",
+    "body-parser": "~1.0.1",
+    "crypto": "0.0.3",
+    "express": "~4.0.0",
+    "jsonwebtoken": "latest",
+    "jwt-simple": "latest",
+    "mime": "latest",
+    "moment": "^2.10.6",
+    "morgan": "latest",
+    "mysql": "^2.7.0",
+    "nodemailer": "latest",
+    "sequelize": "^3.3.2"
+  }
+}

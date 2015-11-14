@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+
+    <title>Placemaking Tool</title>
+
+    <!--bower:css-->
+    <link rel="stylesheet" href="../bower_components/angular-material/angular-material.css" />
+    <!--endbower-->
+
+    <link rel="stylesheet" href="style.css"/>
+
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=RobotoDraft:400,500,700,400italic"/>
+
+
+
+</head>
+
+<body ng-cloak ng-app="PlacemakingTool" ng-controller="AppCtrl as AppVm">
+<header>
+    <!--<md-toolbar id="header">-->
+        <!--<div class="md-toolbar-tools" layout="row" layout-align="center center">-->
+
+            <!--<span flex class="md-flex">Placemap</span>-->
+
+            <!--<nav flex="80" layout="row" layout-align="end center">-->
+                <!--<md-button hide-sm ui-sref="Placeselect"-->
+                           <!--class="navbutton" >Places</md-button>-->
+
+
+                <!--<md-button hide-sm ng-show="AppVm.isLoggedIn"-->
+                           <!--class="navbutton" ui-sref="Admin">Admin</md-button>-->
+
+                <!--<md-button hide-sm ng-show="AppVm.isLoggedIn"-->
+                           <!--class="navbutton" ng-click="AppVm.logout()">Logout</md-button>-->
+
+                <!--<md-button hide-gt-sm aria-label="menu button"-->
+                           <!--class="md-icon-button launch"-->
+                           <!--ng-click="AppVm.toggleSideNav()">-->
+
+                    <!--<md-icon md-svg-icon="assets/icons/ic_menu_24px.svg"></md-icon>-->
+
+                <!--</md-button>-->
+
+
+
+            <!--</nav>-->
+        <!--</div>-->
+    <!--</md-toolbar>-->
+
+
+</header>
+<!--<md-sidenav style="z-index:999 !important;" class="md-sidenav-right md-whiteframe-z2" md-component-id="right">-->
+    <!--<md-toolbar class="md-toolbar-tools">-->
+        <!--<span flex class="md-flex">Menu</span>-->
+    <!--</md-toolbar>-->
+    <!--<md-content layout-padding layout="column" layout-align="space-around end">-->
+        <!--<md-button  ng-click="AppVm.goToState('Placeselect')"-->
+                    <!--class="navbutton" >Places</md-button>-->
+
+
+        <!--<md-button ng-show="AppVm.isLoggedIn"-->
+                   <!--class="navbutton" ng-click="AppVm.goToState('Admin')" ui-sref="Admin">Admin</md-button>-->
+
+        <!--<md-button ng-show="AppVm.isLoggedIn"-->
+                   <!--class="navbutton" ng-click="AppVm.logout(true)">Logout</md-button>-->
+
+    <!--</md-content>-->
+<!--</md-sidenav>-->
+
+
+<div ui-view ng-cloak></div>
+
+
+<!--bower:js-->
+<script src="../bower_components/jquery/dist/jquery.js"></script>
+<script src="../bower_components/angular/angular.js"></script>
+<script src="../bower_components/angular-animate/angular-animate.js"></script>
+<script src="../bower_components/angular-aria/angular-aria.js"></script>
+<script src="../bower_components/angular-cookies/angular-cookies.js"></script>
+<script src="../bower_components/angular-route/angular-route.js"></script>
+<script src="../bower_components/angular-sanitize/angular-sanitize.js"></script>
+<script src="../bower_components/angular-touch/angular-touch.js"></script>
+<script src="../bower_components/angular-material/angular-material.js"></script>
+<script src="../bower_components/hammerjs/hammer.js"></script>
+<script src="../bower_components/lodash/lodash.js"></script>
+<script src="../bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+<script src="../bower_components/angular-simple-logger/dist/angular-simple-logger.js"></script>
+<script src="../bower_components/angular-google-maps/dist/angular-google-maps.js"></script>
+<script src="../bower_components/angular-resource/angular-resource.js"></script>
+<!--endbower-->
+
+
+
+<!--inject:js-->
+
+<script src="/src/app.module.js"></script>
+
+<script src="/src/app.controller.js"></script>
+
+<script src="/src/routes.js"></script>
+
+<script src="/src/controllers/place/place.controller.js"></script>
+
+<!--endinject-->
+
+
+
+
+</body>
+</html>

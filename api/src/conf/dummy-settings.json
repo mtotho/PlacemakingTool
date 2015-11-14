@@ -1,0 +1,10 @@
+{
+  "port":8040,
+  "mysql":{
+    "server":"mysql.domain.com",
+    "username":"user",
+    "password":"pass",
+    "dbname":"PlacemakingTool"
+  },
+  "destroyOnSync":false
+}
