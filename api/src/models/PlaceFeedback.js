@@ -6,6 +6,14 @@ module.exports = function(sequelize, DataTypes) {
         IPAddress: {
             type: DataTypes.STRING,
             field: 'IPAddress'
+        },
+        Latitude: {
+            type: DataTypes.FLOAT,
+            field: 'Latitude'
+        },
+        Longitude: {
+            type: DataTypes.FLOAT,
+            field: 'Longitude'
         }
     }, {
         freezeTableName: true,

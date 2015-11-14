@@ -36,6 +36,9 @@ module.exports = function(sequelize, DataTypes) {
                 //A place has one question set
                 Place.belongsTo(models.QuestionSet);
 
+                //A place has one or many feedbacks
+                Place.hasMany(models.PlaceFeedback);
+
             }
         }
     });

@@ -1,12 +1,20 @@
 var models =require('../models');
 
 var Place = {
-    GetOne:function(id, callback){
-        //models.Course.findOne({
-        //    where: {Id: id }
-        //}).then(function(course) {
-        //    callback(course);
-        //});
+    GetOne:function(query, callback){
+        models.Place.findOne({
+            include:[
+                {
+                    model:models.QuestionSet,
+                    include:[
+                        {model:models.Question, include:[models.QuestionOption]}
+                    ]
+                }
+            ],
+            where:query
+        }).then(function(place) {
+            callback(place);
+        });
     },
     Get:function(query, callback){
         models.Place.findAll({
@@ -15,19 +23,39 @@ var Place = {
             callback(places);
         });
     },
-
-    CreateOne: function(registration, callback){
-
+    UpdateOne: function(entity, callback){
+        models.Place.update({
+            Name:entity.Name,
+            Zoom:entity.Zoom,
+            Latitude:entity.Latitude,
+            Longitude:entity.Longitude,
+            IsPublic:entity.IsPublic,
+            QuestionSetId:entity.QuestionSetId
+        },{
+            where: {Id: entity.Id}
+        }).then(function(updated){
+            callback(updated);
+        });
     },
-
+    CreateOne: function(entity, callback){
+        models.Place.create({
+            Name:entity.Name,
+            Zoom:entity.Zoom,
+            Latitude:entity.Latitude,
+            Longitude:entity.Longitude,
+            IsPublic:entity.IsPublic,
+            QuestionSetId:entity.QuestionSetId
+        }).then(function(newplace){
+            callback(newplace);
+        });
+    },
     DeleteOne: function(id, callback){
-        //models.Course.destroy({
-        //    where:{Id:id}
-        //}).then(function(company) {
-        //    callback(204);
-        //});
+        models.Place.destroy({
+            where:{Id:id}
+        }).then(function() {
+            callback(204);
+        });
     }
-
 };
 
 

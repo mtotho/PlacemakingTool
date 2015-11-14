@@ -12,9 +12,9 @@ module.exports = function(sequelize, DataTypes) {
             type: DataTypes.STRING,
             field: 'Text'
         },
-        Type: {
+        QuestionType: {
             type: DataTypes.STRING,
-            field: 'Type'
+            field: 'QuestionType'
         },
         IsRequired: {
             type: DataTypes.BOOLEAN,
