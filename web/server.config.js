@@ -7,7 +7,7 @@ module.exports = function() {
 
     var devconfig = {
         port:8081,
-        apiserver:"localhost:8080"
+        apiserver:"localhost:8040"
 
     };
 
