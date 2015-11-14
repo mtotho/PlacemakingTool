@@ -4,13 +4,13 @@ var router = express.Router();
 //var auth = require('./api/auth.js');
 //
 //var user = require('./api/user/user.controller');
-//var place = require('./api/place/place.controller');
+var Place = require('./controllers/Place.controller');
 //var question = require('./api/question/question.controller');
 //var questionset= require('./api/question_set/questionset.controller');
 //var feedback= require('./api/feedback/feedback.controller');
 
 ////PUBLIC
-//router.get('/places',  place.getAllPublic);
+router.get('/places',  Place.getAllPublic);
 //router.get('/places/:id',  place.getOne);
 //
 //router.post('/login', auth.login);
