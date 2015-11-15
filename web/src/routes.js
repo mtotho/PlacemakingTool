@@ -19,7 +19,11 @@
                     templateUrl: 'src/controllers/admin/place/place.create.html',
                     controller: 'PlaceCtrl as vm'
                 })
-
+                .state('Admin.Questions', {
+                    url: '/questions',
+                    templateUrl: 'src/controllers/admin/question/questions.html',
+                    controller: 'AdminQuestionsCtrl as vm'
+                })
                 .state('PlaceSelect', {
                     url: '/places',
                     templateUrl: 'src/controllers/public/place-select/place.select.html',

@@ -22,6 +22,16 @@
 
 <body ng-cloak ng-app="PlacemakingTool" ng-controller="AppCtrl as AppVm">
 <header>
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+
+            <h2>
+                <span>Placemap</span>
+            </h2>
+            <span flex></span>
+
+        </div>
+    </md-toolbar>
     <!--<md-toolbar id="header">-->
         <!--<div class="md-toolbar-tools" layout="row" layout-align="center center">-->
 
@@ -106,15 +116,29 @@
 
 <script src="/src/api/PlaceResource.js"></script>
 
+<script src="/src/api/QuestionResource.js"></script>
+
+<script src="/src/api/QuestionSetResource.js"></script>
+
 <script src="/src/controllers/admin/admin.controller.js"></script>
 
 <script src="/src/controllers/admin/place/place.create.controller.js"></script>
 
 <script src="/src/controllers/admin/place/place.list.controller.js"></script>
 
+<script src="/src/controllers/admin/question/questions.controller.js"></script>
+
 <script src="/src/controllers/public/place/place.controller.js"></script>
 
 <script src="/src/controllers/public/place-select/place.select.controller.js"></script>
+
+<script src="/src/controllers/admin/question/directives/placemapQuestion.js"></script>
+
+<script src="/src/controllers/admin/question/directives/placemapQuestionEdit.js"></script>
+
+<script src="/src/controllers/admin/question/directives/placemapQuestionList.js"></script>
+
+<script src="/src/controllers/admin/question/directives/placemapQuestionSetList.js"></script>
 
 <!--endinject-->
 
