@@ -33,8 +33,10 @@ var Place = {
             QuestionSetId:entity.QuestionSetId
         },{
             where: {Id: entity.Id}
-        }).then(function(updated){
-            callback(updated);
+        }).then(function(rowsaffected){
+            Place.GetOne({Id:entity.Id}, function(updated){
+                callback(updated);
+            });
         });
     },
     CreateOne: function(entity, callback){

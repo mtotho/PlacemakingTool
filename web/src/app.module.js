@@ -4,7 +4,6 @@ angular.module('PlacemakingTool', [
     'ngMaterial',
     'ngAnimate',
     //'ngDragDrop',
-    'ngResource',
     'ui.router',
     'uiGmapgoogle-maps'
 ])
@@ -21,7 +20,7 @@ angular.module('PlacemakingTool', [
         //$httpProvider.interceptors.push('TokenInterceptor');
         uiGmapGoogleMapApiProvider.configure({
             // key: 'AIzaSyD93JNhuGDGJKKgp8JGBpj60bDbbpMgJis',
-            v: '3.17',
+            v: '3.22',
             libraries: 'weather,geometry,visualization,places'
         });
     }).run(function($rootScope, $window, $location) {

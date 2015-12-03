@@ -24,7 +24,7 @@ router.post('/placefeedback',  PlaceFeedback.create);
 
 router.get('/v1/places',  Place.getAll);
 router.post('/v1/places', Place.create);
-router.put('/v1/places/:Id', Place.update);
+router.put('/v1/places', Place.update);
 
 router.get('/v1/questionsets',  QuestionSet.getAll);
 router.post('/v1/questionsets',  QuestionSet.create);

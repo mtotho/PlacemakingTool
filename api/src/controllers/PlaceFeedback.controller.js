@@ -4,12 +4,12 @@ var QuestionResponseRepo = require('../repositories/QuestionResponse');
 var placefeedback = {
     getAll: function(req, res) {
         PlaceFeedbackRepo.Get({},function(feedback){
-            res.json(200, feedback);
+            res.status(200).json(feedback);
         });
     },
     getOne: function(req, res) {
         PlaceFeedbackRepo.GetOne({Id: req.params.Id},function(feedback){
-            res.json(200, feedback);
+            res.status(200).json(feedback);
         });
     },
     create: function(req, res) {
@@ -18,7 +18,7 @@ var placefeedback = {
             if(newfeedback.QuestionResponses){
 
                 QuestionResponseRepo.CreateResponsesForFeedback(newfeedback.QuestionResponses,function(){
-                    res.json(200, newfeedback);
+                    res.status(200).json(newfeedback);
                 });
 
             }else{
@@ -31,7 +31,7 @@ var placefeedback = {
     delete: function(req, res) {
         var Id = req.params.Id;
         PlaceFeedbackRepo.DeleteOne(Id,function(status){
-            res.json(status);
+            res.status(status);
         });
     }
 };

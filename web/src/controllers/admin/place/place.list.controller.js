@@ -1,42 +1,48 @@
 'use strict';
 
 angular.module('PlacemakingTool')
-    .controller('AdminPlaceListCtrl', function ($scope, $resource, $mdToast, $state) {
+    .controller('AdminPlaceListCtrl', function ($scope,PlaceResource,QuestionSetResource,  $mdToast, $state) {
         var vm=this;
 
-        var Places = $resource('/api/v1/places/:id',null,{
-            'update': {method:'PUT'}
-        });
-
-
-        var QuestionSet = $resource('/api/v1/questionsets');
         vm.places = null;
 
-        Places.query(function(places){
+        PlaceResource.GetAll(function(places){
             console.log(places);
-            vm.places = places;
+            vm.Places = places;
         });
 
 
-        QuestionSet.query(function(data){
-            vm.questionsets = data;
+        QuestionSetResource.GetAll(function(data){
+            vm.QuestionSets = data;
 
             console.log(data);
 
         });
 
-        vm.updatePlace = function(place){
+        vm.UpdatePlace = function(place){
             console.log(place);
-            Places.update({id:place._id}, place, function(data){
-                console.log(data);
 
-                $mdToast.show(
-                    $mdToast.simple()
-                        .content(data.name + ' update successfully!')
-                        .position('top right')
-                        .hideDelay(2000)
-                );
+            PlaceResource.UpdateOne(place, function(data){
+                console.log(data);
+                    $mdToast.show(
+                        $mdToast.simple()
+                            .content(data.Name + ' update successfully!')
+                            .position('top right')
+                            .hideDelay(2000)
+                    );
+
             });
+
+            //Places.update({id:place._id}, place, function(data){
+            //    console.log(data);
+            //
+            //    $mdToast.show(
+            //        $mdToast.simple()
+            //            .content(data.name + ' update successfully!')
+            //            .position('top right')
+            //            .hideDelay(2000)
+            //    );
+            //});
         }
 
 

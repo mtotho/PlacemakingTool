@@ -1,37 +1,28 @@
 'use strict';
 
 angular.module('PlacemakingTool')
-    .controller('AdminPlaceCreateCtrl', function ($scope, $resource, $state) {
+    .controller('AdminPlaceCreateCtrl', function ($scope,PlaceResource, QuestionSetResource,$state) {
         var vm=this;
-        var PlaceResource = $resource('/api/v1/places/');
 
-
-        var QuestionSet = $resource('/api/v1/questionsets');
-
-
-        QuestionSet.query(function(data){
-            vm.questionsets = data;
-
+        QuestionSetResource.GetAll(function(data){
+            vm.QuestionSets = data;
             console.log(data);
 
         });
 
         var Place = function(){
-            this.name = "";
-            this.isPublic = false;
-            this.center =
-            {
-                latitude: null,
-                longitude:null
-            };
-            this.zoom = null;
-            this.question_set = null;
-        }
+            this.Name = "";
+            this.IsPublic = false;
+            this.Latitude = null;
+            this.Longitude = null;
+            this.Zoom = null;
+            this.QuestionSetId = null;
+        };
 
-        $scope.place = new Place();
+        vm.Place = new Place();
 
         //Define the map objects
-        $scope.map = {
+        vm.Map= {
             center:
             {
                 latitude: 40.748817,
@@ -51,25 +42,28 @@ angular.module('PlacemakingTool')
                 },
                 name:"Kathleen Toth"
             }
-        ]
+        ];
 
 
 
 
-        $scope.createPlace = function(form){
-
+        vm.CreatePlace= function(form){
 
             if(form.$valid) {
 
-                $scope.place.zoom = $scope.map.zoom;
-                $scope.place.center = $scope.map.center;
+                vm.Place.Zoom= vm.Map.zoom;
+                vm.Place.Latitude = vm.Map.center.latitude;
+                vm.Place.Longitude = vm.Map.center.longitude;
 
-                console.log($scope.place);
-                var newplace = new PlaceResource($scope.place);
-                newplace.$save(function(data){
-                    console.log(data);
-                    $state.go('Admin.places');
+                console.log(vm.Place);
+                PlaceResource.CreateOne(vm.Place, function(result){
+                    $state.go('Admin.PlaceList');
                 });
+                //var newplace = new PlaceResource($scope.place);
+                //newplace.$save(function(data){
+                //    console.log(data);
+                //    $state.go('Admin.places');
+                //});
 
             }
 
@@ -78,7 +72,7 @@ angular.module('PlacemakingTool')
 
         //Size map height after it loadss
         $scope.$on('$viewContentLoaded', function () {
-            map_resize(40);
+            map_resize(80);
         });
 
 
@@ -86,11 +80,10 @@ angular.module('PlacemakingTool')
 
 
 function map_resize(offset){
-    var headerheight=$("#header").outerHeight();
-    var mapbarheight=88;
+    var headerheight=$("header").outerHeight() + 36; //36 for temporary nav 16*2 for padding
     var windowheight=$(window).outerHeight();
 
-    var targetheight = windowheight - (headerheight + mapbarheight);
+    var targetheight = windowheight - (headerheight);
 
     if(offset){
         targetheight = targetheight-offset;

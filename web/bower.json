@@ -2,23 +2,23 @@
   "name": "PlacemakingTool-web",
   "version": "0.0.1",
   "dependencies": {
-    "angular": "^1.4.7",
-    "angular-animate": "^1.3.0",
-    "angular-aria": "^1.3.0",
-    "angular-cookies": "^1.3.0",
-    "angular-route": "^1.3.0",
-    "angular-sanitize": "^1.3.0",
-    "angular-touch": "^1.3.0",
-    "angular-material": "latest",
-    "hammerjs": "latest",
-    "lodash": "latest",
-    "jquery": "latest",
-    "angular-ui-router": "latest",
-    "angular-google-maps": "latest",
-    "angular-resource": "~1.3.13"
+    "angular": "~1.5.0",
+    "angular-animate": "~1.5.0",
+    "angular-aria": "~1.5.0",
+    "angular-cookies": "~1.5.0",
+    "angular-route": "~1.5.0",
+    "angular-sanitize": "~1.5.0",
+    "angular-touch": "~1.5.0",
+    "angular-ui-router": "0.2.15",
+    "angular-google-maps": "~2.2.1",
+    "angular-material": "~1.0.0",
+    "hammerjs": "~2.0.4",
+    "lodash": "~3.10.1",
+    "jquery": "~2.1.4"
   },
-  "devDependencies": {
-
-  },
-  "appPath": "app"
+  "devDependencies": {},
+  "appPath": "app",
+  "resolutions": {
+    "angular": "~1.5.0"
+  }
 }

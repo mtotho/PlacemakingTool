@@ -24,7 +24,7 @@ app.all('/*', function(req, res, next) {
     }
 });
 
-app.all('/v1/*', [require('./src/code/validateRequest')]);
+//app.all('/v1/*', [require('./src/code/validateRequest')]);
 //app.all('/v1/*', [require('./app/middlewares/validateRequest')]);
 app.use('/', require('./src/routes.api'));
 app.use(function(req, res, next) {

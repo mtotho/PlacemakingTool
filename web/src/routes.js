@@ -17,7 +17,7 @@
                 .state('Admin.PlaceCreate', {
                     url: '/places/create',
                     templateUrl: 'src/controllers/admin/place/place.create.html',
-                    controller: 'PlaceCtrl as vm'
+                    controller: 'AdminPlaceCreateCtrl as vm'
                 })
                 .state('Admin.Questions', {
                     url: '/questions',

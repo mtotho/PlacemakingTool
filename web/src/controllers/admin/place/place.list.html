@@ -1,10 +1,31 @@
-<!DOCTYPE html>
-<html>
-<head lang="en">
-    <meta charset="UTF-8">
-    <title></title>
-</head>
-<body>
+<div flex layout-fill layout="row" layout-wrap>
+    <md-card flex="45" layout="column" style="padding:10px 10px 20px 20px" ng-repeat="place in vm.Places">
+        <div layout="row" layout-align="space-between center">
+            <div flex="40">
+                <md-input-container>
+                    <label>Place Name</label>
+                    <input ng-model="place.Name"  ng-model-options='{ debounce: 2000 }' ng-change="vm.UpdatePlace(place)" type="text" name="name"  >
+                </md-input-container>
+            </div>
 
-</body>
-</html>
+            <div >
+                <md-switch ng-model="place.IsPublic" ng-change="vm.UpdatePlace(place)" aria-label="Switch 1">
+                    Public: {{ place.IsPublic}}
+                </md-switch>
+            </div>
+
+        </div>
+
+        <div layout="row" layout-align="start center">
+            <div >
+                <md-select placeholder="Question Set" ng-change="vm.UpdatePlace(place)" ng-model="place.QuestionSetId">
+                    <md-option ng-repeat="set in vm.QuestionSets" ng-value="set.Id">{{set.Name }}</md-option>
+                </md-select>
+            </div>
+            <div ></div>
+        </div>
+    </md-card>
+
+</div>
+
+<md-button ui-sref="Admin.PlaceCreate">New Place</md-button>

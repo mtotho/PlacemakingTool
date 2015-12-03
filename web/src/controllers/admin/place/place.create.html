@@ -1,10 +1,60 @@
-<!DOCTYPE html>
-<html>
-<head lang="en">
-    <meta charset="UTF-8">
-    <title></title>
-</head>
-<body>
+<style>
+    #map_canvas{
+        width:100%;
+        height:100%;
 
-</body>
-</html>
+    }
+
+</style>
+
+<section layout="row">
+    <md-content flex layout-padding>
+        <form role="form" name="placeCreateForm" ng-submit="vm.CreatePlace(placeCreateForm)">
+
+                <div layout layout-sm="column">
+                    <md-input-container>
+                        <label>Place Name</label>
+                        <input ng-model="vm.Place.Name" type="text" name="name" required >
+                    </md-input-container>
+                </div>
+
+                <div layout layout-sm="column">
+                    <md-select placeholder="Question Set" ng-model="vm.Place.QuestionSetId">
+                        <md-option ng-repeat="set in vm.QuestionSets" ng-value="set.Id">{{set.Name}}</md-option>
+                    </md-select>
+                </div>
+
+                <div layout layout-sm="column">
+                    <md-input-container>
+                        <label>Zoom</label>
+                        <input ng-model="vm.Map.zoom" type="text" disabled >
+                    </md-input-container>
+
+                </div>
+
+                <div layout layout-sm="column">
+                    <md-switch ng-model="vm.Place.IsPublic" aria-label="Switch 1">
+                        Public: {{ vm.Place.IsPublic}}
+                    </md-switch>
+                </div>
+
+
+                <div layout layout-sm="column">
+                    <md-button class="md-raised md-primary" aria-label="placeCreateForm" type="submit">Create Place</md-button>
+                </div>
+
+        </form>
+    </md-content>
+
+    <div flex="80" style="padding:0 20px 20px 0;">
+       <ui-gmap-google-map center='vm.Map.center' id="map_canvas" zoom='vm.Map.zoom' events='vm.Map.events' control='vm.Map.control'>
+
+            <ui-gmap-markers models="responseMarkers" coords="'coords'" options="'options'" icon="'icon'">
+
+        </ui-gmap-google-map>
+    </div>
+
+
+
+
+</section>
