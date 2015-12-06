@@ -12,12 +12,28 @@ module.exports = function(sequelize, DataTypes) {
             type: DataTypes.INTEGER,
             field: 'Zoom'
         },
+        City: {
+            type: DataTypes.STRING,
+            field: 'City'
+        },
+        State: {
+            type: DataTypes.STRING,
+            field: 'State'
+        },
+        PostalCode: {
+            type: DataTypes.STRING,
+            field: 'PostalCode'
+        },
+        CountryCode: {
+            type: DataTypes.STRING,
+            field: 'CountryCode'
+        },
         Latitude: {
-            type: DataTypes.FLOAT,
+            type: DataTypes.DECIMAL(10,8),
             field: 'Latitude'
         },
         Longitude: {
-            type: DataTypes.FLOAT,
+            type: DataTypes.DECIMAL(11,8),
             field: 'Longitude'
         },
         IsPublic: {

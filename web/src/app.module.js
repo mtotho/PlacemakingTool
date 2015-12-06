@@ -21,7 +21,7 @@ angular.module('PlacemakingTool', [
         uiGmapGoogleMapApiProvider.configure({
             // key: 'AIzaSyD93JNhuGDGJKKgp8JGBpj60bDbbpMgJis',
             v: '3.22',
-            libraries: 'weather,geometry,visualization,places'
+            libraries: 'weather,geometry,visualization,places,geocoder'
         });
     }).run(function($rootScope, $window, $location) {
        // AuthenticationFactory.check();

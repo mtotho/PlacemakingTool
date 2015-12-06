@@ -5,6 +5,15 @@ angular.module('PlacemakingTool').factory('PlaceResource', function($http) {
     var adminroute = "/api/v1/places";
 
     var PlaceResource = {
+        GetOnePublic:function(id, cb){
+            $http.get(publicroute + '/' + id).
+            success(function(data, status, headers, config) {
+                cb(data);
+            }).
+            error(function(data, status, headers, config) {
+
+            });
+        },
         GetAllPublic: function(cb){
             $http.get(publicroute).
                 success(function(data, status, headers, config) {

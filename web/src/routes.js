@@ -30,7 +30,7 @@
                     controller: 'PlaceSelectCtrl as vm'
                 })
                 .state('Place', {
-                    url: '/places/:placeId',
+                    url: '/places/:placeName/:placeId',
                     templateUrl: 'src/controllers/public/place/place.html',
                     controller: 'PlaceCtrl as vm'
                 });

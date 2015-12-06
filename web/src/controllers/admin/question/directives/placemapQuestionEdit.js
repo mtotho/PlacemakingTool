@@ -18,7 +18,7 @@ angular.module('PlacemakingTool')
                     ctrl.editComplete();
                 }
             },
-            controller: function($scope, $resource, QuestionResource){
+            controller: function($scope, QuestionResource){
 
 
                 $scope.isNew = true;

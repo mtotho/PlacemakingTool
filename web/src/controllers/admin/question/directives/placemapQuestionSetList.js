@@ -12,7 +12,7 @@ angular.module('PlacemakingTool')
             link: function (scope, element, attrs, ctrl) {
 
             },
-            controller: function($scope, $resource, QuestionSetResource){
+            controller: function($scope, QuestionSetResource){
 
 
                 $scope.newQS = new QuestionSetModel();

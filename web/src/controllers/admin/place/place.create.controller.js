@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('PlacemakingTool')
-    .controller('AdminPlaceCreateCtrl', function ($scope,PlaceResource, QuestionSetResource,$state) {
+    .controller('AdminPlaceCreateCtrl', function ($scope,PlaceResource, Geocoder,QuestionSetResource,$state) {
         var vm=this;
 
         QuestionSetResource.GetAll(function(data){
@@ -56,14 +56,20 @@ angular.module('PlacemakingTool')
                 vm.Place.Longitude = vm.Map.center.longitude;
 
                 console.log(vm.Place);
-                PlaceResource.CreateOne(vm.Place, function(result){
-                    $state.go('Admin.PlaceList');
+
+                Geocoder.GeocodeLatLng(vm.Place.Latitude, vm.Place.Longitude, function(result){
+                    console.log(result);
+
+                    vm.Place.City = result.City;
+                    vm.Place.State = result.State;
+                    vm.Place.PostalCode = result.PostalCode;
+                    vm.Place.CountryCode = result.CountryCode;
+
+                    PlaceResource.CreateOne(vm.Place, function(result){
+                        $state.go('Admin.PlaceList');
+                    });
                 });
-                //var newplace = new PlaceResource($scope.place);
-                //newplace.$save(function(data){
-                //    console.log(data);
-                //    $state.go('Admin.places');
-                //});
+
 
             }
 

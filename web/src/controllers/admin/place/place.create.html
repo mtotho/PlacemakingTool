@@ -31,7 +31,20 @@
                     </md-input-container>
 
                 </div>
+                <div layout layout-sm="column">
+                    <md-input-container>
+                        <label>Latitude</label>
+                        <input ng-model="vm.Map.center.latitude" type="text" disabled >
+                    </md-input-container>
 
+                </div>
+                <div layout layout-sm="column">
+                    <md-input-container>
+                        <label>Longitude</label>
+                        <input ng-model="vm.Map.center.longitude" type="text" disabled >
+                    </md-input-container>
+
+                </div>
                 <div layout layout-sm="column">
                     <md-switch ng-model="vm.Place.IsPublic" aria-label="Switch 1">
                         Public: {{ vm.Place.IsPublic}}

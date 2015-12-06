@@ -8,13 +8,13 @@ module.exports = function(sequelize, DataTypes) {
             field: 'IPAddress'
         },
         Latitude: {
-            type: DataTypes.FLOAT,
+            type: DataTypes.DECIMAL(10,8),
             field: 'Latitude'
         },
         Longitude: {
-            type: DataTypes.FLOAT,
+            type: DataTypes.DECIMAL(11,8),
             field: 'Longitude'
-        }
+        },
     }, {
         freezeTableName: true,
         name: {

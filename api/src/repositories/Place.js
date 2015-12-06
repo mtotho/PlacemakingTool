@@ -30,6 +30,10 @@ var Place = {
             Latitude:entity.Latitude,
             Longitude:entity.Longitude,
             IsPublic:entity.IsPublic,
+            City:entity.City,
+            State:entity.State,
+            PostalCode:entity.PostalCode,
+            CountryCode:entity.CountryCode,
             QuestionSetId:entity.QuestionSetId
         },{
             where: {Id: entity.Id}
@@ -46,6 +50,10 @@ var Place = {
             Latitude:entity.Latitude,
             Longitude:entity.Longitude,
             IsPublic:entity.IsPublic,
+            City:entity.City,
+            State:entity.State,
+            PostalCode:entity.PostalCode,
+            CountryCode:entity.CountryCode,
             QuestionSetId:entity.QuestionSetId
         }).then(function(newplace){
             callback(newplace);

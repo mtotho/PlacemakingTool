@@ -12,7 +12,7 @@ angular.module('PlacemakingTool')
             link: function (scope, element, attrs, ctrl) {
 
             },
-            controller: function($scope, $resource, QuestionSetResource){
+            controller: function($scope, QuestionSetResource){
                 var vm = this;
 
                 function QuestionModel(){
@@ -34,10 +34,10 @@ angular.module('PlacemakingTool')
 
 
                 }
-                var Question = $resource('/api/v1/questions');
-                Question.query(function(data){
-                    $scope.questions = data;
-                });
+                //var Question = $resource('/api/v1/questions');
+                //Question.query(function(data){
+                //    $scope.questions = data;
+                //});
 
 
 

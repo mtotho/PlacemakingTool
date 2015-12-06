@@ -1,1 +1,23 @@
-select
+<style>
+    .place-name{
+        cursor:pointer;
+    }
+    .place-name:hover{
+        text-decoration:underline;
+    }
+</style>
+
+<md-content>
+    <md-list>
+        <md-subheader class="md-no-sticky">Select a place</md-subheader>
+        <md-list-item class="md-3-line" ng-repeat="place in vm.Places">
+            <!--<img ng-src="{{item.face}}?{{$index}}" class="md-avatar" alt="{{item.who}}" />-->
+            <div class="md-list-item-text" layout="column">
+                <h3 class="place-name" ui-sref="Place({placeName:place.Name, placeId:place.Id})">{{ place.Name }}</h3>
+                <h4>{{ place.City }}<span ng-show="place.State">, {{ place.State }}</span><span ng-show="!place.State || place.CountryCode != 'US'">, {{place.CountryCode}}</span></h4>
+                <p>{{ place.Latitude}}, {{place.Longitude}}</p>
+            </div>
+        </md-list-item>
+        <md-divider ></md-divider>
+    </md-list>
+</md-content>
