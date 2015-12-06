@@ -26,7 +26,7 @@ angular.module('PlacemakingTool').factory('QuestionSetResource', function($http,
                 data:qs,
                 url: route
             }).then(function successCallback(response) {
-                cb(response);
+                cb(response.data);
             }, function errorCallback(response) {
 
             });

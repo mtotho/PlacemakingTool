@@ -24,7 +24,6 @@ angular.module('PlacemakingTool')
                 QuestionSetResource.GetAll(function(data){
                     $scope.questionsets = data;
                     console.log(data);
-
                 });
 
 

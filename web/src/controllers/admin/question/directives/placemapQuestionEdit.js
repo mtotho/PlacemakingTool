@@ -12,7 +12,7 @@ angular.module('PlacemakingTool')
             link: function (scope, element, attrs, ctrl) {
                 scope.pushQuestion = function(question){
                     ctrl.pushQuestion(question);
-                }
+                };
 
                 scope.editComplete = function(){
                     ctrl.editComplete();
@@ -37,12 +37,12 @@ angular.module('PlacemakingTool')
                             index = i;
                             break;
                         }
-                    };
+                    }
 
                     if(index>0){
                         $scope.question.opts.splice(index, 1);
                     }
-                }
+                };
 
                 $scope.newOption = "";
 
@@ -53,11 +53,12 @@ angular.module('PlacemakingTool')
                         $scope.newOption = "";
                     }
 
-                }
+                };
 
                 $scope.cancelEdit = function(){
                     $scope.editComplete();
-                }
+                };
+
                 $scope.saveQuestion = function(form){
 
                     if(form.$valid) {

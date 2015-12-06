@@ -4,6 +4,15 @@ angular.module('PlacemakingTool').factory('QuestionResource', function($http) {
     var route= "/api/v1/questions";
 
     var QuestionResource = {
+        GetAll:function(cb){
+            $http.get(route).
+            success(function(data, status, headers, config) {
+                cb(data);
+            }).
+            error(function(data, status, headers, config) {
+
+            });
+        },
         CreateOne: function(question, cb){
             $http.post(route, question).
                 success(function(data, status, headers, config) {

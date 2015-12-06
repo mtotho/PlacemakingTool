@@ -21,7 +21,7 @@ var question = {
             res.status(200).json(update);
         });
     },
-    delete: function(req, res) {
+    deleteOne: function(req, res) {
         var Id = req.params.Id;
         QuestionRepo.DeleteOne(Id,function(status){
             res.status(200).json(status);

@@ -6,65 +6,81 @@ angular.module('PlacemakingTool')
             templateUrl: 'src/controllers/admin/question/directives/placemap-question-list.html',
             restrict: 'EA',
             scope:{
-
+                questionSet:"="
             },
             //require:"^legacyToolExplorer",
             link: function (scope, element, attrs, ctrl) {
 
             },
-            controller: function($scope, QuestionSetResource){
+            controller: function($scope, QuestionSetResource, QuestionResource){
                 var vm = this;
 
-                function QuestionModel(){
-                    this.name = "";
-                    this.text = "";
-                    this.type = "shortanswer";
-                    this.tags = [];
-                    this.opts = [];
 
+
+
+                $scope.$watch('questionSet',function(){
+                   if(!angular.isUndefinedOrNull($scope.questionSet)){
+                       vm.Questions = $scope.questionSet.Questions;
+                   }
+                });
+                function QuestionModel(){
+                    this.Name = "";
+                    this.Text= "";
+                    this.QuestionType = "shortanswer";
+                    //this.QuestionSetId = $scope.questionSet.Id;
+                    this.QuestionOptions = [];
                 }
                 $scope.editQuestion = null;
 
-                this.setEditQuestion = function(question){
+                vm.setEditQuestion = function(question){
                     $scope.editQuestion = question;
-                }
-                this.editComplete = function(){
-
+                };
+                vm.editComplete = function(){
                     $scope.editQuestion = null;
-
-
-                }
+                };
                 //var Question = $resource('/api/v1/questions');
                 //Question.query(function(data){
                 //    $scope.questions = data;
                 //});
 
-
+                //QuestionResource.GetAllBySet(function(questions){
+                //    console.log(questions);
+                //    vm.Questions = questions;
+                //});
 
                 $scope.showQuestionCreateCard = false;
                 $scope.newQuestion  = new QuestionModel();
 
 
                 $scope.toggleCreateQuestionCard = function(){
+                    $scope.newQuestion.QuestionSetId = $scope.questionSet.Id;
                     $scope.showQuestionCreateCard = !$scope.showQuestionCreateCard;
-                }
+                };
 
                 console.log($scope.editQuestion);
-                this.pushQuestion = function(question){
-                    $scope.questions.push(question);
+                vm.pushQuestion = function(question){
+                    vm.Questions.push(question);
+
                     $scope.showQuestionCreateCard = false;
                     $scope.newQuestion = new QuestionModel();
-                }
+                };
 
-                $scope.selectedSet = null;
+                vm.removeQuestion = function(question){
+                    vm.Questions=  vm.Questions.filter(function(eachquestion){
+                        return eachquestion.Id != question.Id;
+                    });
+                };
 
-                $scope.$on('qsUpdated',function(event,set){
-                    $scope.selectedSet = set;
+              //  $scope.selectedSet = null;
 
-                });
+                //$scope.$on('qsUpdated',function(event,set){
+                //    $scope.selectedSet = set;
+                //
+                //});
 
 
 
-            }//end controller
+            },//end controller
+            controllerAs:"vm"
         };
     });

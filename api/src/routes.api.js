@@ -33,7 +33,7 @@ router.put('/v1/questionsets/:Id',  QuestionSet.update);
 router.get('/v1/questions',  Question.getAll);
 router.post('/v1/questions',  Question.create);
 router.put('/v1/questions/:Id',  Question.update);
-
+router.delete('/v1/questions/:Id',  Question.deleteOne);
 /*
  // All undefined asset or api routes should return a 404
  app.route('/:url(api|auth|components|app|bower_components|assets)/*')

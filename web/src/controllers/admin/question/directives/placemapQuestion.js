@@ -14,37 +14,41 @@ angular.module('PlacemakingTool')
                 scope.setEditQuestion= function(question){
                     ctrl.setEditQuestion(question);
                 };
+                scope.removeQuestion= function(question){
+                    ctrl.removeQuestion(question);
+                };
             },
-            controller: function($scope,$filter, QuestionSetResource){
+            controller: function($scope,$filter,QuestionResource, QuestionSetResource){
                 //$scope.selectedSet= null;
                 $scope.inSet = false;
 
                 console.log($scope.selectedSet);
-                $scope.$on('qsUpdated',function(event,set){
-                    $scope.inSet = false;
-                    $scope.selectedSet = set;
+                //$scope.$on('qsUpdated',function(event,set){
+                //    $scope.inSet = false;
+                //    $scope.selectedSet = set;
+                //
+                //    console.log(set);
+                //    if(set!==null){
+                //            var inSet = $filter('getByProp')(set.questions, 'name', $scope.question.name);
+                //        if(inSet !== null){
+                //            $scope.inSet = true;
+                //        }
+                //    }
+                //});
 
-                    console.log(set);
-                    if(set!==null){
-                            var inSet = $filter('getByProp')(set.questions, 'name', $scope.question.name);
-                        if(inSet !== null){
-                            $scope.inSet = true;
-                        }
-                    }
-                });
+                //$scope.setEditQuestion = function(){
+                //
+                //}
+                //
+                //$scope.addQuestionToSet = function(question){
+                //    QuestionSetResource.AddQuestion(question);
+                //    $scope.inSet = true;
+                //};
 
-                $scope.setEditQuestion = function(){
-
-                }
-
-                $scope.addQuestionToSet = function(question){
-                    QuestionSetResource.AddQuestion(question);
-                    $scope.inSet = true;
-                };
-
-                $scope.removeQuestionFromSet = function(question){
-                    QuestionSetResource.RemoveQuestion(question);
-                    $scope.inSet = false;
+                $scope.deleteQuestion = function(question){
+                    QuestionResource.DeleteOne(question,function(status){
+                        $scope.removeQuestion(question);
+                    });
                 }
 
 
