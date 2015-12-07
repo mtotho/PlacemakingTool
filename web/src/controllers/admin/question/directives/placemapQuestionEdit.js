@@ -23,8 +23,7 @@ angular.module('PlacemakingTool')
 
                 $scope.isNew = true;
 
-                if(!angular.isUndefinedOrNull($scope.question._id)){
-
+                if(!angular.isUndefinedOrNull($scope.question.Id)){
                     $scope.isNew = false;
                 }
 
@@ -32,15 +31,15 @@ angular.module('PlacemakingTool')
                     console.log( $scope.question);
                     var index = -1;
 
-                    for(var i = 0; i < $scope.question.opts.length; i++){
-                        if($scope.question.opts[i]._id===opt._id){
+                    for(var i = 0; i < $scope.question.QuestionOptions.length; i++){
+                        if($scope.question.QuestionOptions[i].Id===opt.Id){
                             index = i;
                             break;
                         }
                     }
 
                     if(index>0){
-                        $scope.question.opts.splice(index, 1);
+                        $scope.question.QuestionOptions.splice(index, 1);
                     }
                 };
 
@@ -49,7 +48,7 @@ angular.module('PlacemakingTool')
                 $scope.addOption = function(){
 
                     if($scope.newOption !== ""){
-                        $scope.question.opts.push({text:$scope.newOption});
+                        $scope.question.QuestionOptions.push({OptionText:$scope.newOption, QuestionId:$scope.question.Id});
                         $scope.newOption = "";
                     }
 
@@ -75,8 +74,8 @@ angular.module('PlacemakingTool')
 
                         } else {
 
-                            Question.update({id: $scope.question._id}, $scope.question, function (result) {
-
+                            QuestionResource.UpdateOne($scope.question, function (result) {
+                                $scope.question = result;
                                 $scope.editComplete();
                             });
 

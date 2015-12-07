@@ -22,6 +22,15 @@ angular.module('PlacemakingTool').factory('QuestionResource', function($http) {
 
                 });
         },
+        UpdateOne: function(question, cb){
+            $http.put(route, question).
+            success(function(data, status, headers, config) {
+                cb(data);
+            }).
+            error(function(data, status, headers, config) {
+
+            });
+        },
         DeleteOne: function(question, cb){
             $http({
                 method: 'DELETE',
