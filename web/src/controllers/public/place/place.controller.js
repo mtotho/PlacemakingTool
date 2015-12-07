@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('PlacemakingTool')
-    .controller('PlaceCtrl', function ($scope,$stateParams, uiGmapGoogleMapApi, PlaceResource) {
+    .controller('PlaceCtrl', function ($scope,$stateParams, uiGmapGoogleMapApi,FeedbackService, PlaceResource) {
         var vm=this;
 
         //var Place = $resource('/api/places');
@@ -11,6 +11,7 @@ angular.module('PlacemakingTool')
         vm.MarkerPlacementMode = false;
         vm.FeedbackMode = false;
 
+        vm.CurrentQuestionIndex = 0;
 
         var GMaps = null;
         uiGmapGoogleMapApi.then(function(maps){
@@ -61,7 +62,23 @@ angular.module('PlacemakingTool')
         };
 
         vm.SetFeedbackMode = function(bool){
-            vm.FeedbackMode = true;
+            vm.FeedbackMode = bool;
+
+            if(bool){
+                vm.CurrentQuestionIndex = 0;
+                vm.FeedbackMarker.options.animation  = null;
+                vm.FeedbackMarker.options.draggable = false;
+
+                vm.Map.center = {
+                    latitude:  vm.FeedbackMarker.coords.latitude,
+                    longitude: vm.FeedbackMarker.coords.longitude
+                };
+
+                FeedbackService.SetFeedbackLocation({Latitude: vm.FeedbackMarker.coords.latitude, Longitude:  vm.FeedbackMarker.coords.longitude});
+
+            }else{
+                vm.FeedbackMarker.options.animation  = GMaps.Animation.BOUNCE;
+            }
         };
 
         PlaceResource.GetOnePublic(vm.placeid, function(place){
