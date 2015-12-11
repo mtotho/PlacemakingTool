@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('PlacemakingTool')
-    .controller('PlaceCtrl', function ($scope,$stateParams, uiGmapGoogleMapApi,FeedbackService,FeedbackResource, PlaceResource) {
+    .controller('PlaceCtrl', function ($scope,$stateParams, uiGmapGoogleMapApi,FeedbackService,FeedbackResource,$mdDialog, PlaceResource) {
         var vm=this;
 
         //var Place = $resource('/api/places');
@@ -12,10 +12,14 @@ angular.module('PlacemakingTool')
         vm.FeedbackMode = false;
 
         vm.CurrentQuestionIndex = 0;
+        vm.Loaded=false;
 
         var GMaps = null;
         uiGmapGoogleMapApi.then(function(maps){
             GMaps = maps;
+            console.log("ready");
+
+            vm.Loaded = true;
         });
         //Define the map objects
         vm.Map= {
@@ -78,6 +82,7 @@ angular.module('PlacemakingTool')
 
             }else{
                 vm.FeedbackMarker.options.animation  = GMaps.Animation.BOUNCE;
+                vm.FeedbackMarker.options.draggable = true;
             }
         };
 
@@ -102,12 +107,27 @@ angular.module('PlacemakingTool')
             map_resize(64);
         });
 
-        vm.SubmitFeedback = function(feedback){
+        vm.SubmitFeedback = function(feedback,ev){
             console.log(feedback);
             feedback.Latitude =  vm.FeedbackMarker.coords.latitude;
             feedback.Longitude = vm.FeedbackMarker.coords.longitude;
-            FeedbackResource.CreateOne(feedback, function(){
+            FeedbackResource.CreateOne(feedback, function(status){
 
+                console.log(status);
+
+
+                $mdDialog.show(
+                    $mdDialog.alert()
+                        .parent(angular.element(document.body))
+                        .title('Thank you!')
+                        .content('Thank you for submitting your feedback.')
+                        .ariaLabel('Alert Dialog')
+                        .ok('Continue')
+                        .targetEvent(ev)
+                );
+
+                vm.SetFeedbackMode(false);
+                vm.SetMarkerPlacementMode(false);
             });
 
         };

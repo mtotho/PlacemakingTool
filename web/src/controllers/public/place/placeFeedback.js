@@ -109,8 +109,8 @@ angular.module('PlacemakingTool')
                             feedback.QuestionResponses.push(vm.Responses[r]);
                         }
 
-                        $scope.submitfeedback(feedback);
-
+                        $scope.submitfeedback(feedback,ev);
+                        vm.CurrentIndex = 0;
                         //var Feedback = new Resources.feedback(feedback);
                         //
                         //Feedback.$save(function(result){

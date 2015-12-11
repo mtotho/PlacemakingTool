@@ -15,9 +15,9 @@ var placefeedback = {
     create: function(req, res) {
         PlaceFeedbackRepo.CreateOne(req.body,function(newfeedback){
 
-            if(newfeedback.QuestionResponses){
+            if(req.body.QuestionResponses){
 
-                QuestionResponseRepo.CreateResponsesForFeedback(newfeedback.QuestionResponses,function(){
+                QuestionResponseRepo.CreateResponsesForFeedback(newfeedback.Id, req.body.QuestionResponses,function(){
                     res.status(200).json(newfeedback);
                 });
 

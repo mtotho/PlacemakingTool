@@ -51,7 +51,12 @@
 </style>
 
 <div id="map-container">
-    <div id="place-info-panel">
+
+    <div ng-show="!vm.Loaded">
+        <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+    </div>
+
+    <div ng-show="vm.Loaded" id="place-info-panel">
         <div layout="row" class="md-padding" >
             <md-whiteframe class="md-whiteframe-1dp map-control" flex-gt-lg="25" flex-lg="25" flex-gt-md="25"  flex-md="35"  flex-gt-sm="55"  flex="100" md-padding layout="column">
 
