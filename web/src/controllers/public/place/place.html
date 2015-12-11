@@ -30,7 +30,7 @@
         font-size:20px;
     }
     .place-title-bar{
-        padding-bottom:5px;
+        padding-bottom:10px;
     }
     .place-location{
         font-weight:normal;
@@ -58,7 +58,13 @@
 
                 <div class="place-title-bar" layout="row" layout-align="space-between center">
                     <div class="place-title" >{{vm.Place.Name}}</div>
-                    <div class="place-location">{{ vm.Place.City }}<span ng-show="vm.Place.State">, {{ vm.Place.State }}</span><span ng-show="!vm.Place.State || vm.Place.CountryCode != 'US'">, {{vm.Place.CountryCode}}</span>
+                    <div class="place-location">
+                        <div  ng-hide="vm.FeedbackMode">
+                            {{ vm.Place.City }}<span ng-show="vm.Place.State">, {{ vm.Place.State }}</span><span ng-show="!vm.Place.State || vm.Place.CountryCode != 'US'">, {{vm.Place.CountryCode}}</span>
+                        </div>
+                        <div  ng-show="vm.FeedbackMode" layout="row" layout-align="start center">
+                            <md-button style="margin:0; padding:0;"class="md-warn map-control"   ng-click="vm.SetFeedbackMode(false)">Cancel</md-button>
+                        </div>
                     </div>
                 </div>
                 <md-divider></md-divider>
@@ -86,17 +92,16 @@
                             <div style="padding-bottom:5px;">
                                 Please take the time to complete each of the following questions.
                             </div>
+
                             <md-divider></md-divider>
                             <div style="padding:30px 0px 30px 0">
-                                <place-feedback place="vm.Place"></place-feedback>
+                                <place-feedback place="vm.Place" submitfeedback="vm.SubmitFeedback"></place-feedback>
                             </div>
 
 
                         </div>
 
-                        <div layout="row" layout-align="end center">
-                            <md-button style="margin-bottom:0px" class="md-warn md-hue-2 map-control"   ng-click="vm.SetFeedbackMode(false)">Cancel Feedback</md-button>
-                        </div>
+
                     </div>
                 </div>
             </md-whiteframe>

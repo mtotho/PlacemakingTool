@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('PlacemakingTool')
-    .controller('PlaceCtrl', function ($scope,$stateParams, uiGmapGoogleMapApi,FeedbackService, PlaceResource) {
+    .controller('PlaceCtrl', function ($scope,$stateParams, uiGmapGoogleMapApi,FeedbackService,FeedbackResource, PlaceResource) {
         var vm=this;
 
         //var Place = $resource('/api/places');
@@ -101,6 +101,16 @@ angular.module('PlacemakingTool')
         $scope.$on('$viewContentLoaded', function () {
             map_resize(64);
         });
+
+        vm.SubmitFeedback = function(feedback){
+            console.log(feedback);
+            feedback.Latitude =  vm.FeedbackMarker.coords.latitude;
+            feedback.Longitude = vm.FeedbackMarker.coords.longitude;
+            FeedbackResource.CreateOne(feedback, function(){
+
+            });
+
+        };
 
 
     });

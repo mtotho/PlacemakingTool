@@ -14,7 +14,7 @@ module.exports = function(sequelize, DataTypes) {
         Longitude: {
             type: DataTypes.DECIMAL(11,8),
             field: 'Longitude'
-        },
+        }
     }, {
         freezeTableName: true,
         name: {

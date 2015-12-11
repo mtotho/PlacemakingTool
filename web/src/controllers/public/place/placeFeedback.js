@@ -6,7 +6,8 @@ angular.module('PlacemakingTool')
             templateUrl: 'src/controllers/public/place/place-feedback.html',
             restrict: 'EA',
             scope:{
-                "place":"="
+                "place":"=",
+                "submitfeedback":"="
             },
             link: function (scope, element, attrs, ctrl) {
 
@@ -21,10 +22,13 @@ angular.module('PlacemakingTool')
                 vm.questionsComplete = false;
                 vm.Responses = [];
 
+                vm.QuestionSetId = null;
+
 
                 $scope.$watch('place',function(){
                     if(!angular.isUndefinedOrNull($scope.place)){
                         vm.Questions = $scope.place.QuestionSet.Questions;
+                        vm.QuestionSetId = $scope.place.QuestionSet.Id;
                         console.log(vm.place);
                         //vm.newFeedback.place = vm.place._id;
                         vm.QuestionCount =vm.Questions.length;
@@ -88,6 +92,7 @@ angular.module('PlacemakingTool')
                     if((vm.CurrentQuestion.IsRequired && vm.Responses[vm.CurrentQuestion.Id].ResponseText!=="" || vm.Responses[vm.CurrentQuestion.Id].TempOptions.length>0) || !vm.CurrentQuestion.IsRequired){
                         var feedback = {
                             PlaceId:$scope.place.Id,
+                            QuestionSetId:vm.QuestionSetId,
                             QuestionResponses: []
                         };
 
@@ -103,6 +108,9 @@ angular.module('PlacemakingTool')
                             vm.Responses[r].ResponseOptions = respOptions;
                             feedback.QuestionResponses.push(vm.Responses[r]);
                         }
+
+                        $scope.submitfeedback(feedback);
+
                         //var Feedback = new Resources.feedback(feedback);
                         //
                         //Feedback.$save(function(result){
