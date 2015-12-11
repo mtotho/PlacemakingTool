@@ -16,7 +16,7 @@ angular.module('PlacemakingTool')
                 var vm = this;
 
 
-
+                vm.Questions = [];
 
                 $scope.$watch('questionSet',function(){
                    if(!angular.isUndefinedOrNull($scope.questionSet)){
