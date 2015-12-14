@@ -18,7 +18,7 @@
     #place-info-panel .map-control{
         /*margin-top:10px;*/
         /*margin-left:10px;*/
-        z-index:9999;
+        z-index:9;
         padding:10px 10px 10px 10px;
 
     }
@@ -65,7 +65,7 @@
 
     <div ng-show="vm.PlaceLoaded" id="place-info-panel">
         <div layout="row" class="md-padding" >
-            <md-whiteframe class="md-whiteframe-1dp map-control" flex-gt-lg="25" flex-lg="25" flex-gt-md="25"  flex-md="35"  flex-gt-sm="55"  flex="100" md-padding layout="column">
+            <md-whiteframe class="md-whiteframe-1dp map-control" flex-gt-lg="25" flex-lg="30" flex-gt-md="30"  flex-md="40"  flex-gt-sm="55" flex-sm=""  flex="100" md-padding layout="column">
 
 
                 <div class="place-title-bar" layout="row" layout-align="space-between center">
@@ -112,7 +112,7 @@
                     <div ng-show="vm.FeedbackMode">
 
                         <div layout="column">
-                            <div style="padding-bottom:5px;">
+                            <div style="padding-bottom:10px;">
                                 Please take the time to complete each of the following questions.
                             </div>
 
