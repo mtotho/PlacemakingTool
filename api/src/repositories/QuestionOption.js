@@ -5,6 +5,7 @@ var QuestionOption = {
     CreateOne: function(entity, callback){
         models.QuestionOption.create({
             OptionText:entity.OptionText,
+            OptionValue:entity.OptionValue,
             QuestionId:entity.QuestionId
         }).then(function(newoption){
             callback(newoption);

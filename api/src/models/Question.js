@@ -16,6 +16,10 @@ module.exports = function(sequelize, DataTypes) {
             type: DataTypes.STRING,
             field: 'QuestionType'
         },
+        DisplayOrder: {
+            type: DataTypes.INTEGER,
+            field: 'DisplayOrder'
+        },
         IsRequired: {
             type: DataTypes.BOOLEAN,
             field: 'IsRequired'

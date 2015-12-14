@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('PlacemakingTool')
-    .controller('PlaceCtrl', function ($scope,$stateParams, uiGmapGoogleMapApi,FeedbackService,FeedbackResource,$mdDialog, PlaceResource) {
+    .controller('PlaceCtrl', function ($scope,$stateParams,FeedbackService,uiGmapGoogleMapApi,FeedbackResource,$mdDialog, PlaceResource) {
         var vm=this;
 
         //var Place = $resource('/api/places');
@@ -15,10 +15,15 @@ angular.module('PlacemakingTool')
         vm.Loaded=false;
 
         var GMaps = null;
+
+
         uiGmapGoogleMapApi.then(function(maps){
             GMaps = maps;
             console.log("ready");
 
+            if(vm.Map.control.hasOwnProperty('refresh')){
+                vm.Map.control.refresh();
+            }
             vm.Loaded = true;
         });
         //Define the map objects
@@ -35,6 +40,7 @@ angular.module('PlacemakingTool')
                 mapTypeControl:false
             }
 
+
         };
 
         vm.FeedbackMarker = {
@@ -46,7 +52,8 @@ angular.module('PlacemakingTool')
             },
             options:{
                 visible:false,
-                draggable:true
+                draggable:true,
+                icon:'http://maps.google.com/mapfiles/ms/icons/blue-dot.png'
             }
         };
 
@@ -59,6 +66,7 @@ angular.module('PlacemakingTool')
                     latitude: vm.Map.center.latitude,
                     longitude:vm.Map.center.longitude
                 };
+
                 vm.FeedbackMarker.options.animation  = GMaps.Animation.BOUNCE;
             }else{
                 vm.FeedbackMarker.options.visible = false;
@@ -86,6 +94,10 @@ angular.module('PlacemakingTool')
             }
         };
 
+        vm.MapOptions ={
+            mapTypeControl:false
+
+        };
         PlaceResource.GetOnePublic(vm.placeid, function(place){
 
             vm.Map.center = {
@@ -100,15 +112,16 @@ angular.module('PlacemakingTool')
             vm.Map.zoom = place.Zoom;
            console.log(place);
             vm.Place = place;
+
+
         });
 
-        //Size map height after it loadss
-        $scope.$on('$viewContentLoaded', function () {
-            map_resize(64);
-        });
+
 
         vm.SubmitFeedback = function(feedback,ev){
             console.log(feedback);
+
+
             feedback.Latitude =  vm.FeedbackMarker.coords.latitude;
             feedback.Longitude = vm.FeedbackMarker.coords.longitude;
             FeedbackResource.CreateOne(feedback, function(status){
@@ -132,24 +145,6 @@ angular.module('PlacemakingTool')
 
         };
 
-
     });
 
 
-function map_resize(offset){
-  //  var headerheight=$("header").outerHeight();
-    var windowheight=$(window).outerHeight();
-
-    var targetheight = windowheight;// - (headerheight);
-
-    if(offset){
-        targetheight = targetheight-offset;
-    }
-
-    $("#map_canvas .angular-google-map-container").css('height',targetheight+'px');
-    $(".full-height").css('height',targetheight+'px');
-
-}
-$(window).resize(function(){
-    map_resize(64);
-});

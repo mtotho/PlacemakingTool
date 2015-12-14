@@ -2,12 +2,42 @@
 
 
 <div layout="column">
+
     <div class="question-text">
         {{vm.CurrentIndex + 1}}. {{vm.CurrentQuestion.Text}}
     </div>
 
     <div style="margin-bottom:20px;">
+
+        <div ng-show="vm.CurrentQuestion.QuestionType==='markertype'">
+
+
+            <md-radio-group  layout-align="start center"  ng-model="vm.Responses[vm.CurrentQuestion.Id].ResponseText" class="md-primary">
+                <div class="row" ng-repeat="opt in vm.CurrentQuestion.QuestionOptions" >
+                    <div flex layout="row" layout-padding layout-align="start-center">
+                        <div flex style="max-width:75px;">
+                            <img ng-src="{{opt.OptionValue}}" />
+                        </div>
+
+                        <md-radio-button flex style=" margin-right:12px;"
+                                         ng-value="opt.OptionText" >
+
+
+                            {{ opt.OptionText }}
+                        </md-radio-button>
+                    </div>
+
+
+                </div>
+
+
+            </md-radio-group>
+
+        </div>
+
+
         <div ng-show="vm.CurrentQuestion.QuestionType==='checkbox'">
+
             <md-checkbox ng-repeat="opt in vm.CurrentQuestion.QuestionOptions" ng-value="opt.OptionText" ng-model="vm.Responses[vm.CurrentQuestion.Id].TempOptions[opt.Id]"  aria-label="Checkbox 1">
                 {{ opt.OptionText }}
             </md-checkbox>

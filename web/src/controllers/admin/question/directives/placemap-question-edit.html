@@ -25,10 +25,11 @@
                 <md-option value="shortanswer">Short Answer</md-option>
                 <md-option value="checkbox">Check Box</md-option>
                 <md-option value="radio">Radio</md-option>
+                <md-option value="markertype">Marker Type</md-option>
             </md-select>
 
 
-            <div style="padding-top:20px" ng-show="question.QuestionType==='radio' || question.QuestionType==='checkbox'" layout="column" >
+            <div style="padding-top:20px" ng-show="question.QuestionType==='radio' ||question.QuestionType==='markertype' || question.QuestionType==='checkbox'" layout="column" >
 
               <span style="font-style:italic;">Options</span>
             <div ng-repeat="opt in question.QuestionOptions" layout="row" layout-align="center center">

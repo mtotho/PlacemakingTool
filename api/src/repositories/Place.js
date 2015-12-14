@@ -11,6 +11,9 @@ var Place = {
                     ]
                 }
             ],
+            order:[[
+               models.QuestionSet, models.Question, 'DisplayOrder','ASC'
+            ]],
             where:query
         }).then(function(place) {
             callback(place);

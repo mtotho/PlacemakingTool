@@ -85,20 +85,20 @@ angular.module('PlacemakingTool')
     });
 
 
-function map_resize(offset){
-    var headerheight=$("header").outerHeight() + 36; //36 for temporary nav 16*2 for padding
-    var windowheight=$(window).outerHeight();
-
-    var targetheight = windowheight - (headerheight);
-
-    if(offset){
-        targetheight = targetheight-offset;
-    }
-
-    $("#map_canvas .angular-google-map-container").css('height',targetheight+'px');
-    $(".full-height").css('height',targetheight+'px');
-
-}
-$(window).resize(function(){
-    map_resize(40);
-});
+//function map_resize(offset){
+//    var headerheight=$("header").outerHeight() + 36; //36 for temporary nav 16*2 for padding
+//    var windowheight=$(window).outerHeight();
+//
+//    var targetheight = windowheight - (headerheight);
+//
+//    if(offset){
+//        targetheight = targetheight-offset;
+//    }
+//
+//    $("#map_canvas .angular-google-map-container").css('height',targetheight+'px');
+//    $(".full-height").css('height',targetheight+'px');
+//
+//}
+//$(window).resize(function(){
+//    map_resize(40);
+//});

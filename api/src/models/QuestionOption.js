@@ -7,6 +7,10 @@ module.exports = function(sequelize, DataTypes) {
             type: DataTypes.STRING,
             unique:true,
             field: 'OptionText'
+        },
+        OptionValue: {
+            type: DataTypes.STRING,
+            field: 'OptionValue'
         }
     }, {
         freezeTableName: true,
