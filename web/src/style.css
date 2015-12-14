@@ -1,3 +1,7 @@
 header{
 
 }
+
+body,html{
+    height:100%;
+}

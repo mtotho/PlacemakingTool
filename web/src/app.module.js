@@ -3,6 +3,7 @@
 angular.module('PlacemakingTool', [
     'ngMaterial',
     'ngAnimate',
+    'ngSanitize',
     //'ngDragDrop',
     'ui.router',
     'uiGmapgoogle-maps'

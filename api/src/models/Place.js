@@ -12,6 +12,10 @@ module.exports = function(sequelize, DataTypes) {
             type: DataTypes.INTEGER,
             field: 'Zoom'
         },
+        DescriptionText: {
+            type: DataTypes.TEXT,
+            field: 'DescriptionText'
+        },
         City: {
             type: DataTypes.STRING,
             field: 'City'

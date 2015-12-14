@@ -7,7 +7,12 @@
                     <input ng-model="place.Name"  ng-model-options='{ debounce: 2000 }' ng-change="vm.UpdatePlace(place)" type="text" name="name"  >
                 </md-input-container>
             </div>
+            <div >
 
+                <md-select placeholder="Question Set" ng-change="vm.UpdatePlace(place)" ng-model="place.QuestionSetId">
+                    <md-option ng-repeat="set in vm.QuestionSets" ng-value="set.Id">{{set.Name }}</md-option>
+                </md-select>
+            </div>
             <div >
                 <md-switch ng-model="place.IsPublic" ng-change="vm.UpdatePlace(place)" aria-label="Switch 1">
                     Public: {{ place.IsPublic}}
@@ -17,12 +22,13 @@
         </div>
 
         <div layout="row" layout-align="start center">
-            <div >
-                <md-select placeholder="Question Set" ng-change="vm.UpdatePlace(place)" ng-model="place.QuestionSetId">
-                    <md-option ng-repeat="set in vm.QuestionSets" ng-value="set.Id">{{set.Name }}</md-option>
-                </md-select>
+            <div flex="100">
+                <md-input-container class="md-block">
+                    <label>Description Text (Intro Text)</label>
+                    <textarea ng-model="place.DescriptionText"  ng-model-options="{debounce: 1000 }"  ng-change="vm.UpdatePlace(place)" columns="1" md-maxlength="5000" rows="20"></textarea>
+                </md-input-container>
             </div>
-            <div ></div>
+
         </div>
     </md-card>
 

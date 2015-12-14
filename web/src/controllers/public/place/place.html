@@ -1,12 +1,13 @@
 <style>
     #map_canvas{
         width:100%;
-        height:100%;
 
     }
     #map-container{
         position:relative;
         width:100%;
+        height:100%;
+        background-color:#e8e8e8;
     }
     #place-info-panel{
         position:absolute;
@@ -48,15 +49,21 @@
         font-weight:bold;
         margin-bottom:20px;
     }
+
+    #map-loading-indicator{
+        position:absolute;
+        top:50%;
+        left:50%;
+        margin-top:-120px;
+
+    }
 </style>
 
-<div id="map-container">
+<div id="map-container" resize-element resize-offset="64">
 
-    <div ng-show="!vm.Loaded">
-        <md-progress-circular md-mode="indeterminate"></md-progress-circular>
-    </div>
 
-    <div ng-show="vm.Loaded" id="place-info-panel">
+
+    <div ng-show="vm.PlaceLoaded" id="place-info-panel">
         <div layout="row" class="md-padding" >
             <md-whiteframe class="md-whiteframe-1dp map-control" flex-gt-lg="25" flex-lg="25" flex-gt-md="25"  flex-md="35"  flex-gt-sm="55"  flex="100" md-padding layout="column">
 
@@ -74,8 +81,19 @@
                 </div>
                 <md-divider></md-divider>
                 <div class="action-bar" >
-                    <div layout="row" ng-show="!vm.MarkerPlacementMode" layout-align="end center">
-                        <md-button class="md-primary"  ng-click="vm.SetMarkerPlacementMode(true)">Get Started</md-button>
+
+
+
+                    <div ng-show="!vm.MarkerPlacementMode" >
+                        <div layout="row">
+                            <div class="instruction-text">
+                                <div ng-bind-html="vm.Place.DescriptionText"></div>
+                            </div>
+                        </div>
+                        <div layout="row" layout-align="end center">
+                            <md-button class="md-primary"  ng-click="vm.SetMarkerPlacementMode(true)"  ng-disabled="!vm.GMapsLoaded">Get Started</md-button>
+                        </div>
+
                     </div>
 
                     <div ng-show="vm.MarkerPlacementMode && !vm.FeedbackMode" >
@@ -113,7 +131,6 @@
 
         </div>
 
-
         <!--<div layout="row" class="md-padding" ng-show="vm.FeedbackMode" layout-align="end stretch">-->
             <!--<md-whiteframe class="md-whiteframe-1dp map-control" flex-gt-lg="25" flex-lg="25" flex-gt-md="25"  flex-md="35"  flex-gt-sm="55"  flex="100" md-padding layout="column">-->
 
@@ -124,7 +141,12 @@
     </div>
 
 
-    <div  resize-element resize-offset="64" data-resize-selector="'.angular-google-map-container'">
+    <div id="map-loading-indicator" ng-show="!vm.GMapsLoaded">
+        <md-progress-circular md-mode="indeterminate"md-diameter="120"></md-progress-circular>
+    </div>
+
+
+    <div ng-show="vm.GMapsLoaded"  resize-element resize-offset="64" data-resize-selector="'.angular-google-map-container'">
 
         <ui-gmap-google-map center='vm.Map.center' id="map_canvas" zoom='vm.Map.zoom' options='vm.Map.options' events='vm.Map.events' control='vm.Map.control'>
 

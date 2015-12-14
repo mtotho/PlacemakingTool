@@ -12,7 +12,9 @@ angular.module('PlacemakingTool')
         vm.FeedbackMode = false;
 
         vm.CurrentQuestionIndex = 0;
-        vm.Loaded=false;
+        vm.GMapsLoaded=false;
+        vm.PlaceLoaded=false;
+
 
         var GMaps = null;
 
@@ -24,7 +26,7 @@ angular.module('PlacemakingTool')
             if(vm.Map.control.hasOwnProperty('refresh')){
                 vm.Map.control.refresh();
             }
-            vm.Loaded = true;
+            vm.GMapsLoaded = true;
         });
         //Define the map objects
         vm.Map= {
@@ -99,7 +101,7 @@ angular.module('PlacemakingTool')
 
         };
         PlaceResource.GetOnePublic(vm.placeid, function(place){
-
+            vm.PlaceLoaded = true;
             vm.Map.center = {
                 latitude: place.Latitude,
                 longitude:place.Longitude
@@ -112,6 +114,8 @@ angular.module('PlacemakingTool')
             vm.Map.zoom = place.Zoom;
            console.log(place);
             vm.Place = place;
+
+            vm.Place.DescriptionText = vm.Place.DescriptionText.replace(/(?:\r\n|\r|\n)/g, '<br />');
 
 
         });

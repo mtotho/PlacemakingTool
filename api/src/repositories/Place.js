@@ -30,6 +30,7 @@ var Place = {
         models.Place.update({
             Name:entity.Name,
             Zoom:entity.Zoom,
+            DescriptionText:entity.DescriptionText,
             Latitude:entity.Latitude,
             Longitude:entity.Longitude,
             IsPublic:entity.IsPublic,
@@ -50,6 +51,7 @@ var Place = {
         models.Place.create({
             Name:entity.Name,
             Zoom:entity.Zoom,
+            DescriptionText:entity.DescriptionText,
             Latitude:entity.Latitude,
             Longitude:entity.Longitude,
             IsPublic:entity.IsPublic,
