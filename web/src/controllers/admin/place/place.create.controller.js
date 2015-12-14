@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('PlacemakingTool')
-    .controller('AdminPlaceCreateCtrl', function ($scope,PlaceResource, Geocoder,QuestionSetResource,$state) {
+    .controller('AdminPlaceCreateCtrl', function ($scope,PlaceResource, uiGmapGoogleMapApi,Geocoder,QuestionSetResource,$state) {
         var vm=this;
 
         QuestionSetResource.GetAll(function(data){
@@ -10,6 +10,16 @@ angular.module('PlacemakingTool')
 
         });
 
+
+        var GMaps = null;
+        vm.GMapsLoaded = false;
+        uiGmapGoogleMapApi.then(function(maps){
+            GMaps = maps;
+            console.log("ready");
+
+
+            vm.GMapsLoaded = true;
+        });
         var Place = function(){
             this.Name = "";
             this.IsPublic = false;
@@ -76,10 +86,7 @@ angular.module('PlacemakingTool')
 
         };
 
-        //Size map height after it loadss
-        $scope.$on('$viewContentLoaded', function () {
-            map_resize(80);
-        });
+
 
 
     });

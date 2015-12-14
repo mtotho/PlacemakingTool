@@ -4,7 +4,13 @@
         height:100%;
 
     }
+    #map-loading-indicator{
+        position:absolute;
+        top:50%;
+        left:50%;
+        margin-top:-120px;
 
+    }
 </style>
 
 <section layout="row">
@@ -59,7 +65,12 @@
         </form>
     </md-content>
 
-    <div flex="80" style="padding:0 20px 20px 0;">
+    <div id="map-loading-indicator" ng-show="!vm.GMapsLoaded">
+        <md-progress-circular md-mode="indeterminate"md-diameter="120"></md-progress-circular>
+    </div>
+
+
+    <div flex="80" style="padding:0 20px 20px 0;"  ng-show="vm.GMapsLoaded"  resize-element resize-offset="144" data-resize-selector="'.angular-google-map-container'">
        <ui-gmap-google-map center='vm.Map.center' id="map_canvas" zoom='vm.Map.zoom' events='vm.Map.events' control='vm.Map.control'>
 
             <ui-gmap-markers models="responseMarkers" coords="'coords'" options="'options'" icon="'icon'">
