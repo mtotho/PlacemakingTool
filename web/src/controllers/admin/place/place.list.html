@@ -9,6 +9,10 @@
             </div>
             <div >
 
+              <a ui-sref="Admin.PlaceResponse({placeId:place.Id})">Response map</a>
+            </div>
+            <div >
+
                 <md-select placeholder="Question Set" ng-change="vm.UpdatePlace(place)" ng-model="place.QuestionSetId">
                     <md-option ng-repeat="set in vm.QuestionSets" ng-value="set.Id">{{set.Name }}</md-option>
                 </md-select>

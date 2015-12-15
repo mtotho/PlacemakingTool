@@ -10,7 +10,7 @@ var QuestionSet = require('./controllers/QuestionSet.controller');
 
 //PUBLIC
 router.get('/places',  Place.getAllPublic);
-router.get('/places/:Id',  Place.getOne);
+router.get('/places/:Id',  Place.getOnePublic);
 //
 //router.post('/login', auth.login);
 router.post('/placefeedback',  PlaceFeedback.create);
@@ -22,6 +22,7 @@ router.post('/placefeedback',  PlaceFeedback.create);
 //router.delete('/v1/user/:id', user.delete);
 //router.post('/v1/user', user.create);
 
+router.get('/v1/places/:Id',  Place.getOne);
 router.get('/v1/places',  Place.getAll);
 router.post('/v1/places', Place.create);
 router.put('/v1/places', Place.update);

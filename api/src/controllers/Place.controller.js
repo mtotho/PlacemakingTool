@@ -11,6 +11,11 @@ var place = {
             res.status(200).json(places);
         });
     },
+    getOnePublic: function(req, res) {
+        PlaceRepo.GetOnePublic({Id: req.params.Id},function(place){
+            res.status(200).json(place);
+        });
+    },
     getOne: function(req, res) {
         PlaceRepo.GetOne({Id: req.params.Id},function(place){
             res.status(200).json(place);

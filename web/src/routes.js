@@ -14,6 +14,11 @@
                     templateUrl: 'src/controllers/admin/place/place.list.html',
                     controller: 'AdminPlaceListCtrl as vm'
                 })
+                .state('Admin.PlaceResponse', {
+                    url: '/places/:placeId',
+                    templateUrl: 'src/controllers/admin/place/place.response.html',
+                    controller: 'AdminPlaceResponseCtrl as vm'
+                })
                 .state('Admin.PlaceCreate', {
                     url: '/places/create',
                     templateUrl: 'src/controllers/admin/place/place.create.html',

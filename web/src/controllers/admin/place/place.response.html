@@ -1,0 +1,82 @@
+<style>
+ #map_canvas{
+  width:100%;
+
+ }
+ #map-container{
+  position:relative;
+  width:100%;
+
+  background-color:#e8e8e8;
+ }
+ #place-info-panel{
+  position:absolute;
+  top:0px;
+  left:0px;
+  width:100%;
+ }
+ #place-info-panel .map-control{
+  /*margin-top:10px;*/
+  /*margin-left:10px;*/
+  z-index:9;
+  padding:10px 10px 10px 10px;
+
+ }
+ .map-control{
+  background-color:rgba(255,255,255,0.95);
+ }
+
+ .place-title{
+  font-weight:bold;
+  font-size:20px;
+ }
+ .place-title-bar{
+  padding-bottom:10px;
+ }
+ .place-location{
+  font-weight:normal;
+  font-size:14px;
+ rgba(0, 0, 0, 0.75);
+ }
+ .action-bar{
+  padding:10px 0px 0px 0;
+ }
+ .instruction-text{
+  font-size:18px;
+ }
+
+ .question-text{
+  font-weight:bold;
+  margin-bottom:20px;
+ }
+
+ #map-loading-indicator{
+  position:absolute;
+  top:50%;
+  left:50%;
+  margin-top:-120px;
+
+ }
+</style>
+
+<div id="map-container" resize-element resize-offset="116">
+
+
+ <div id="map-loading-indicator" ng-show="!vm.GMapsLoaded">
+  <md-progress-circular md-mode="indeterminate"md-diameter="120"></md-progress-circular>
+ </div>
+
+
+ <div ng-show="vm.GMapsLoaded"  resize-element resize-offset="116" data-resize-selector="'.angular-google-map-container'">
+
+  <ui-gmap-google-map center='vm.Map.center' id="map_canvas" zoom='vm.Map.zoom' options='vm.Map.options' events='vm.Map.events' control='vm.Map.control'>
+
+   <ui-gmap-markers models="vm.ResponseMarkers" coords="'coords'" options="'options'" >
+
+  </ui-gmap-google-map>
+ </div>
+
+
+
+ </div>
+

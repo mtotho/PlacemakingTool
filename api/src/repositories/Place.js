@@ -1,7 +1,7 @@
 var models =require('../models');
 
 var Place = {
-    GetOne:function(query, callback){
+    GetOnePublic:function(query, callback){
         models.Place.findOne({
             include:[
                 {
@@ -13,6 +13,30 @@ var Place = {
             ],
             order:[[
                models.QuestionSet, models.Question, 'DisplayOrder','ASC'
+            ]],
+            where:query
+        }).then(function(place) {
+            callback(place);
+        });
+    },
+    GetOne:function(query, callback){
+        models.Place.findOne({
+            include:[
+                {
+                    model:models.QuestionSet,
+                    include:[
+                        {model:models.Question, include:[models.QuestionOption]}
+                    ]
+                },
+                {
+                    model:models.PlaceFeedback,
+                    include:[
+                        {model:models.QuestionResponse, include:[{model:models.QuestionOption,as:"ResponseOptions"},{model:models.Question}]}
+                    ]
+                }
+            ],
+            order:[[
+                models.QuestionSet, models.Question, 'DisplayOrder','ASC'
             ]],
             where:query
         }).then(function(place) {
