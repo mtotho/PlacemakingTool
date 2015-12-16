@@ -15,7 +15,7 @@
                     controller: 'AdminPlaceListCtrl as vm'
                 })
                 .state('Admin.PlaceResponse', {
-                    url: '/places/:placeId',
+                    url: '/places/responses/:placeId',
                     templateUrl: 'src/controllers/admin/place/place.response.html',
                     controller: 'AdminPlaceResponseCtrl as vm'
                 })

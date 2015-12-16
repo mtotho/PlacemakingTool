@@ -12,15 +12,15 @@
         <div ng-show="vm.CurrentQuestion.QuestionType==='markertype'">
 
 
-            <md-radio-group  layout-align="start center"  ng-model="vm.Responses[vm.CurrentQuestion.Id].ResponseText" class="md-primary">
+            <md-radio-group  layout-align="start center"  ng-model="vm.Responses[vm.CurrentQuestion.Id].TempCheckOption" class="md-primary">
                 <div class="row" ng-repeat="opt in vm.CurrentQuestion.QuestionOptions" >
                     <div flex layout="row" layout-padding layout-align="start-center">
                         <div flex style="max-width:75px;">
-                            <img ng-src="{{opt.OptionValue}}" />
+                            <img ng-src="{{opt.OptionImage}}" />
                         </div>
 
-                        <md-radio-button flex style=" margin-right:12px;"
-                                         ng-value="opt.OptionText" >
+                        <md-radio-button  flex style=" margin-right:12px;"
+                                         ng-value="opt.Id" >
 
 
                             {{ opt.OptionText }}

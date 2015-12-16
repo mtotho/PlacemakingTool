@@ -11,6 +11,10 @@ module.exports = function(sequelize, DataTypes) {
         OptionValue: {
             type: DataTypes.STRING,
             field: 'OptionValue'
+        },
+        OptionImage: {
+            type: DataTypes.STRING,
+            field: 'OptionImage'
         }
     }, {
         freezeTableName: true,

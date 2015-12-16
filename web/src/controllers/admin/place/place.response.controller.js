@@ -73,9 +73,20 @@ angular.module('PlacemakingTool')
                         longitude:feedback.Longitude
                     },
                     options:{
-
+                        icon:'http://maps.google.com/mapfiles/ms/icons/blue-dot.png'
                     }
+                };
+
+                var markertypeFilter = feedback.QuestionResponses.filter(function(response){
+                   return response.Question.QuestionType == "markertype";
+                });
+
+                if(markertypeFilter.length == 1 && markertypeFilter[0].ResponseOptions.length == 1){
+                    var markerTypeOption = markertypeFilter[0];
+                    marker.options.icon = markerTypeOption.ResponseOptions[0].OptionImage;
+
                 }
+
 
                 vm.ResponseMarkers.push(marker);
             }

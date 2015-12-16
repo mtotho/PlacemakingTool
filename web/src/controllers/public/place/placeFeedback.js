@@ -57,11 +57,25 @@ angular.module('PlacemakingTool')
                     return response;
                 }
 
+                var validateQuestion = function(){
+                    var valid = true;
+                    if((vm.CurrentQuestion.IsRequired && vm.Responses[vm.CurrentQuestion.Id].ResponseText!==""
+                        || vm.Responses[vm.CurrentQuestion.Id].TempOptions.length>0
+                        || vm.Responses[vm.CurrentQuestion.Id].TempCheckOption)
+                        || !vm.CurrentQuestion.IsRequired){
+                        return true;
+                    }else{
+                        return false;
+                    }
+
+                };
+
+
                 vm.nextQuestion = function(ev){
                     if(vm.CurrentIndex + 1 < vm.QuestionCount){
 
 
-                        if((vm.CurrentQuestion.IsRequired && vm.Responses[vm.CurrentQuestion.Id].ResponseText!=="" || vm.Responses[vm.CurrentQuestion.Id].TempOptions.length>0) || !vm.CurrentQuestion.IsRequired){
+                        if(validateQuestion()){
                             vm.CurrentIndex ++;
                             vm.CurrentQuestion =vm.Questions[vm.CurrentIndex];
                         }else{
@@ -89,7 +103,7 @@ angular.module('PlacemakingTool')
 
                 vm.submitFeedback = function(ev){
 
-                    if((vm.CurrentQuestion.IsRequired && vm.Responses[vm.CurrentQuestion.Id].ResponseText!=="" || vm.Responses[vm.CurrentQuestion.Id].TempOptions.length>0) || !vm.CurrentQuestion.IsRequired){
+                    if(validateQuestion()){
                         var feedback = {
                             PlaceId:$scope.place.Id,
                             QuestionSetId:vm.QuestionSetId,
@@ -105,11 +119,22 @@ angular.module('PlacemakingTool')
                                     respOptions.push(optId);
                                 }
                             }
+
+                            if(vm.Responses[r].TempCheckOption){
+                                respOptions.push(vm.Responses[r].TempCheckOption);
+                            }
                             vm.Responses[r].ResponseOptions = respOptions;
                             feedback.QuestionResponses.push(vm.Responses[r]);
                         }
 
                         $scope.submitfeedback(feedback,ev);
+
+                        if(vm.QuestionCount > 0){
+                            vm.Responses = new ResponseObject(vm.Questions);
+                            // console.log(vm.responses);
+                            vm.CurrentQuestion =  vm.Questions[0];
+
+                        }
                         vm.CurrentIndex = 0;
                         //var Feedback = new Resources.feedback(feedback);
                         //
@@ -134,6 +159,7 @@ angular.module('PlacemakingTool')
                     }
 
                 };
+
 
                 // size_content();
             },//end controller,
