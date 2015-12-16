@@ -12,7 +12,7 @@ angular.module('PlacemakingTool')
             link: function (scope, element, attrs, ctrl) {
 
             },
-            controller: function($scope, QuestionSetResource, QuestionResource){
+            controller: function($scope, QuestionSetResource, $filter, QuestionResource){
                 var vm = this;
 
 
@@ -71,6 +71,15 @@ angular.module('PlacemakingTool')
                 vm.removeQuestion = function(question){
                     vm.Questions=  vm.Questions.filter(function(eachquestion){
                         return eachquestion.Id != question.Id;
+                    });
+                    vm.Questions=$filter('orderBy')(vm.Questions, 'DisplayOrder')
+                    for(var i=0; i<vm.Questions.length; i++){
+                        vm.Questions[i].DisplayOrder = i;
+                    }
+
+
+                    QuestionResource.UpdateMany(vm.Questions, function(){
+
                     });
                 };
 
