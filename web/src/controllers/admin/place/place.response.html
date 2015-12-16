@@ -67,9 +67,9 @@
  </div>
 
 
- <div ng-show="vm.GMapsLoaded"  resize-element resize-offset="116" data-resize-selector="'.angular-google-map-container'">
+ <div ng-if="vm.GMapsLoaded"  resize-element resize-offset="116" data-resize-selector="'.angular-google-map-container'">
 
-  <ui-gmap-google-map center='vm.Map.center' id="map_canvas" zoom='vm.Map.zoom' options='vm.Map.options' events='vm.Map.events' control='vm.Map.control'>
+  <ui-gmap-google-map center='vm.Map.center' id="map_canvas" refresh="vm.MapRefresh"  dorebuildall="true" zoom='vm.Map.zoom' options='vm.Map.options' events='vm.Map.events' control='vm.Map.control'>
 
    <ui-gmap-markers models="vm.ResponseMarkers" coords="'coords'" options="'options'" >
 

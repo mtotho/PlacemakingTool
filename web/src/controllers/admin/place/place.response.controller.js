@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('PlacemakingTool')
-    .controller('AdminPlaceResponseCtrl', function ($scope,$stateParams,uiGmapGoogleMapApi,FeedbackResource,$mdDialog, PlaceResource) {
+    .controller('AdminPlaceResponseCtrl', function ($scope,$stateParams,uiGmapGoogleMapApi,uiGmapIsReady,MapInstance,FeedbackResource,$mdDialog, PlaceResource) {
         var vm=this;
 
         //var Place = $resource('/api/places');
@@ -22,9 +22,21 @@ angular.module('PlacemakingTool')
             GMaps = maps;
             console.log("ready");
 
-
             vm.GMapsLoaded = true;
         });
+
+        uiGmapIsReady.promise(1).then(function(instances) {
+            instances.forEach(function(inst) {
+
+                var map = inst.map;
+                google.maps.event.trigger(map, 'resize');
+                var uuid = map.uiGmap_id;
+                var mapInstanceNumber = inst.instance; // Starts at 1.
+
+                MapInstance.SetMap(map);
+            });
+        });
+
         //Define the map objects
         vm.Map= {
             center:
@@ -37,8 +49,10 @@ angular.module('PlacemakingTool')
             markersControl:{},
             options:{
                 mapTypeControl:false
-            }
+            },
+            events:{
 
+            }
 
         };
 
@@ -84,12 +98,14 @@ angular.module('PlacemakingTool')
                 if(markertypeFilter.length == 1 && markertypeFilter[0].ResponseOptions.length == 1){
                     var markerTypeOption = markertypeFilter[0];
                     marker.options.icon = markerTypeOption.ResponseOptions[0].OptionImage;
-
                 }
 
 
                 vm.ResponseMarkers.push(marker);
+
+
             }
+
 
         });
 

@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('PlacemakingTool')
-    .controller('PlaceCtrl', function ($scope,$stateParams,FeedbackService,uiGmapGoogleMapApi,FeedbackResource,$mdDialog, PlaceResource) {
+    .controller('PlaceCtrl', function ($scope,$stateParams,FeedbackService,uiGmapGoogleMapApi,uiGmapIsReady,FeedbackResource,MapInstance,$mdDialog, PlaceResource) {
         var vm=this;
 
         //var Place = $resource('/api/places');
@@ -23,11 +23,24 @@ angular.module('PlacemakingTool')
             GMaps = maps;
             console.log("ready");
 
-            if(vm.Map.control.hasOwnProperty('refresh')){
-                vm.Map.control.refresh();
-            }
+
             vm.GMapsLoaded = true;
         });
+
+        uiGmapIsReady.promise(1).then(function(instances) {
+            instances.forEach(function(inst) {
+
+
+                var map = inst.map;
+                google.maps.event.trigger(map, 'resize');
+
+                var uuid = map.uiGmap_id;
+                var mapInstanceNumber = inst.instance; // Starts at 1.
+
+                MapInstance.SetMap(map);
+            });
+        });
+
         //Define the map objects
         vm.Map= {
             center:

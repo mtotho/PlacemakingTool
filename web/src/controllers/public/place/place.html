@@ -146,7 +146,7 @@
     </div>
 
 
-    <div ng-show="vm.GMapsLoaded"  resize-element resize-offset="64" data-resize-selector="'.angular-google-map-container'">
+    <div ng-if="vm.GMapsLoaded"  resize-element resize-offset="64" data-resize-selector="'.angular-google-map-container'">
 
         <ui-gmap-google-map center='vm.Map.center' id="map_canvas" zoom='vm.Map.zoom' options='vm.Map.options' events='vm.Map.events' control='vm.Map.control'>
 
