@@ -21,6 +21,11 @@ var question = {
             res.status(200).json(update);
         });
     },
+    updateMany: function(req, res) {
+        QuestionRepo.UpdateMany(req.body,function(update){
+            res.status(200).json(update);
+        });
+    },
     deleteOne: function(req, res) {
         var Id = req.params.Id;
         QuestionRepo.DeleteOne(Id,function(status){

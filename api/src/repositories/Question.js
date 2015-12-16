@@ -60,12 +60,28 @@ var Question = {
             callback(questions);
         });
     },
+    UpdateMany:function(questions, callback){
+
+        var updated = 0;
+        for(var i=0; i<questions.length;i++){
+            Question.UpdateOne(questions[i], function(){
+
+                updated ++;
+
+                if(updated == questions.length){
+                    callback();
+                }
+            });
+        }
+
+    },
     UpdateOne: function(entity, callback){
         models.Question.update({
             Name:entity.Name,
             Text:entity.Text,
             QuestionType:entity.QuestionType,
             IsRequired:entity.IsRequired,
+            DisplayOrder:entity.DisplayOrder,
             QuestionSetId:entity.QuestionSetId
         },{
             where: {Id: entity.Id}
@@ -123,6 +139,7 @@ var Question = {
             Text:entity.Text,
             QuestionType:entity.QuestionType,
             IsRequired:entity.IsRequired,
+            DisplayOrder:entity.DisplayOrder,
             QuestionSetId:entity.QuestionSetId
         }).then(function(newquestion){
             callback(newquestion);

@@ -34,6 +34,7 @@ router.put('/v1/questionsets/:Id',  QuestionSet.update);
 router.get('/v1/questions',  Question.getAll);
 router.post('/v1/questions',  Question.create);
 router.put('/v1/questions',  Question.update);
+router.put('/v1/questions/many',  Question.updateMany);
 router.delete('/v1/questions/:Id',  Question.deleteOne);
 /*
  // All undefined asset or api routes should return a 404

@@ -59,6 +59,9 @@ angular.module('PlacemakingTool')
 
                 console.log($scope.editQuestion);
                 vm.pushQuestion = function(question){
+
+                    if(!vm.Questions)
+                        vm.Questions = [];
                     vm.Questions.push(question);
 
                     $scope.showQuestionCreateCard = false;
@@ -71,6 +74,56 @@ angular.module('PlacemakingTool')
                     });
                 };
 
+                vm.PushQuestionUp = function(question){
+                    var initialOrder = question.DisplayOrder;
+                    if(initialOrder > 0){
+                        var newOrder = initialOrder - 1;
+
+                        for(var i=0; i<vm.Questions.length; i++){
+
+                            if(vm.Questions[i].DisplayOrder == newOrder){
+                                vm.Questions[i].DisplayOrder = initialOrder;
+                            }
+                        }
+
+                        question.DisplayOrder = newOrder;
+
+                        QuestionResource.UpdateMany(vm.Questions, function(){
+
+
+                        });
+                    }
+
+
+
+
+
+                };
+
+
+                vm.PushQuestionDown = function(question){
+                    var initialOrder = question.DisplayOrder;
+                    if(initialOrder < (vm.Questions.length - 1)){
+                        var newOrder = initialOrder + 1;
+
+                        for(var i=0; i<vm.Questions.length; i++){
+
+                            if(vm.Questions[i].DisplayOrder == newOrder){
+                                vm.Questions[i].DisplayOrder = initialOrder;
+                            }
+                        }
+
+                        question.DisplayOrder = newOrder;
+
+
+                        QuestionResource.UpdateMany(vm.Questions, function(){
+
+
+                        });
+                    }
+
+
+                };
               //  $scope.selectedSet = null;
 
                 //$scope.$on('qsUpdated',function(event,set){

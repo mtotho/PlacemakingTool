@@ -39,8 +39,8 @@
     <div ng-show="selectedSet !== null">
 
         <div layout="row" layout-align="start center">
-            <div style="margin-right:30px">
-                <md-icon flex="10" class="icon-back" md-svg-src="src/assets/icons/ic_arrow_back_48px.svg"  ng-click="selectSet(null)" style="color: #0f0"></md-icon>
+            <div style="margin-right:30px; cursor:pointer"  ng-click="selectSet(null)">
+                <md-icon flex="10" class="icon-back" md-svg-src="src/assets/icons/ic_arrow_back_48px.svg"   style="color: #0f0"></md-icon>
             </div>
             <div>Viewing <strong>{{selectedSet.Name}}</strong> questions</div>
         </div>

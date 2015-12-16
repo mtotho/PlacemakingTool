@@ -7,19 +7,28 @@
     <md-button ng-show="showQuestionCreateCard" flex class="md-raised md-warn" ng-click="toggleCreateQuestionCard()">Cancel Create Question</md-button>
 
 
-    <placemap-question-edit layout-fill flex ng-if="showQuestionCreateCard" question="newQuestion"></placemap-question-edit>
+    <placemap-question-edit layout-fill flex ng-if="showQuestionCreateCard" question-set="questionSet"  question="newQuestion"></placemap-question-edit>
 
 
-    <placemap-question-edit layout-fill flex ng-if="editQuestion !== null"  question="editQuestion"></placemap-question-edit>
 
 
-    <div   layout-fill layout="row" layout-wrap>
+
+    <div   layout-fill layout="column" >
 
         <!--<img ng-src="{{item.face}}?{{$index}}" class="md-avatar" alt="{{item.who}}" />-->
 
 
 
-        <placemap-question flex="50"  ng-repeat="question in vm.Questions" question="question" selected-set="selectedSet"></placemap-question>
+        <div layout="row"   ng-repeat="question in vm.Questions | orderBy:'DisplayOrder'">
+            <placemap-question-edit layout-fill flex ng-if="editQuestion !== null" question-set="questionSet" question="editQuestion"></placemap-question-edit>
+            <placemap-question flex="80" ng-if="editQuestion == null" question="question" selected-set="questionSet"></placemap-question>
+            <div layout="column">
+                <md-button  class="md-raised md-primary" ng-click="vm.PushQuestionUp(question)" ng-disabled="question.DisplayOrder==0">Up</md-button>
+                <md-button class="md-raised"ng-click="vm.PushQuestionDown(question)" ng-disabled="question.DisplayOrder == (vm.Questions.length - 1)" >down</md-button>
+
+            </div>
+        </div>
+
 
     </div>
 </div>

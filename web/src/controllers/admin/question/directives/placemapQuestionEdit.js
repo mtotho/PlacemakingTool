@@ -6,7 +6,8 @@ angular.module('PlacemakingTool')
             templateUrl: 'src/controllers/admin/question/directives/placemap-question-edit.html?v=1',
             restrict: 'EA',
             scope:{
-                "question":"="
+                "question":"=",
+                "questionSet":"="
             },
             require:"^placemapQuestionList",
             link: function (scope, element, attrs, ctrl) {
@@ -65,6 +66,8 @@ angular.module('PlacemakingTool')
                             $scope.question.IsRequired = false;
                         }
                         if ($scope.isNew) {
+
+                            $scope.question.DisplayOrder = $scope.questionSet.Questions.length;
 
                             QuestionResource.CreateOne($scope.question, function(data){
                                 console.log(data);
