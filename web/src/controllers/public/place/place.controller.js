@@ -128,8 +128,9 @@ angular.module('PlacemakingTool')
            console.log(place);
             vm.Place = place;
 
-            vm.Place.DescriptionText = vm.Place.DescriptionText.replace(/(?:\r\n|\r|\n)/g, '<br />');
-
+            if(vm.Place.DescriptionText){
+                vm.Place.DescriptionText = vm.Place.DescriptionText.replace(/(?:\r\n|\r|\n)/g, '<br />');
+            }
 
         });
 
